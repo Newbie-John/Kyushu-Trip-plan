@@ -1,0 +1,17 @@
+{
+  "name": "九州 Trip Planner 2026",
+  "short_name": "Kyushu 2026",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0d0f1a",
+  "theme_color": "#121212",
+  "description": "Travel itinerary app for Kyushu",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

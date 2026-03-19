@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <!-- PWA Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <title>九州 Trip 2026</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>九州 Trip <span class="badge">2026</span></h1>
+    <div class="user-avatar"><i class="ph ph-user"></i></div>
+  </header>
+
+  <main id="app-content">
+    
+    <!-- Tab 1: Dashboard -->
+    <section id="view-dashboard" class="view active">
+      <div class="glass-card welcome-card">
+        <h2>即將出發</h2>
+        <p>距離 2026/04/04 日本九州之旅還有...</p>
+        <div class="countdown" id="countdown">計算中...</div>
+      </div>
+      
+      <h3 class="section-title">本日焦點 (Today)</h3>
+      <div id="day-summary">
+        <!-- JS will populate -->
+        <div class="glass-card">
+          <p style="color:var(--text-muted); font-size:14px; text-align:center;">向下滑動查看更多資訊，或切換下方頁籤。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Itinerary -->
+    <section id="view-itinerary" class="view">
+      <h2 class="view-title">完整行程</h2>
+      <div id="itinerary-list" class="timeline"></div>
+    </section>
+
+    <!-- Tab 3: Hotels -->
+    <section id="view-hotels" class="view">
+      <h2 class="view-title">住宿清單</h2>
+      <div id="hotels-list"></div>
+    </section>
+
+    <!-- Tab 4: Transit -->
+    <section id="view-transit" class="view">
+      <h2 class="view-title">交通資訊</h2>
+      
+      <h3 class="section-title">航班 Flights</h3>
+      <div id="flights-list"></div>
+      
+      <h3 class="section-title">租車 Car Rental</h3>
+      <div id="car-list"></div>
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-target="view-dashboard">
+      <i class="ph ph-house"></i><span>首頁</span>
+    </button>
+    <button class="nav-btn" data-target="view-itinerary">
+      <i class="ph ph-map-trifold"></i><span>行程</span>
+    </button>
+    <button class="nav-btn" data-target="view-hotels">
+      <i class="ph ph-bed"></i><span>住宿</span>
+    </button>
+    <button class="nav-btn" data-target="view-transit">
+      <i class="ph ph-airplane-tilt"></i><span>交通</span>
+    </button>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
