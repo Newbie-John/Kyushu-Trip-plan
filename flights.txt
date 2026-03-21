@@ -1,0 +1,5 @@
+  flights: [
+    { type: "去程", flightNo: "BR106", airline: "長榮航空", departure: {time: "08:10", airport: "TPE 桃園(第2航廈)"}, arrival: {time: "11:15", airport: "FUK 福岡(國際線)"}, baggage: "計重制 23kg" },
+    { type: "回程", flightNo: "BR105", airline: "長榮航空", departure: {time: "12:15", airport: "FUK 福岡(國際線)"}, arrival: {time: "13:50", airport: "TPE 桃園(第2航廈)"}, baggage: "計重制 23kg" }
+  ],
+  transport: { rentalCar: { reservationNo: "RC-888999", time: "2026/04/07 10:00 - 2026/04/09 18:00", mapUrl: "", location: "博多車站前營業所" } },

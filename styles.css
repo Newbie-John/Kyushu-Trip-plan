@@ -183,7 +183,7 @@ main {
   font-size: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 60px;
+  flex: 1;
 }
 .nav-btn i {
   font-size: 24px;
@@ -215,3 +215,39 @@ main {
   text-align: right;
   line-height: 1.4;
 }
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+.modal-content {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Checkbox Items */
+.check-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.check-item:active { transform: scale(0.98); }
+.check-item i { margin-right: 12px; font-size: 24px; color: var(--text-muted); transition: color 0.2s; }
+.check-item.checked i { color: var(--accent-color); }
+.check-item.checked span { color: var(--text-muted); text-decoration: line-through; }

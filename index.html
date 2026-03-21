@@ -48,22 +48,126 @@
       <div id="itinerary-list" class="timeline"></div>
     </section>
 
-    <!-- Tab 3: Hotels -->
-    <section id="view-hotels" class="view">
-      <h2 class="view-title">住宿清單</h2>
+    <!-- Tab 3: Wallet & Bookings (Merged) -->
+    <section id="view-wallet" class="view">
+      <h2 class="view-title">票卷與憑證</h2>
+      <div id="wallet-list"></div>
+
+      <h3 class="section-title">住宿 Hotels</h3>
       <div id="hotels-list"></div>
+      
+      <h3 class="section-title">交通 Transit</h3>
+      <div id="flights-list"></div>
+      <div id="car-list" style="margin-top:16px;"></div>
     </section>
 
-    <!-- Tab 4: Transit -->
-    <section id="view-transit" class="view">
-      <h2 class="view-title">交通資訊</h2>
+    <!-- Tab 4: Collections -->
+    <section id="view-collections" class="view">
+      <h2 class="view-title">收藏與打卡</h2>
       
-      <h3 class="section-title">航班 Flights</h3>
-      <div id="flights-list"></div>
-      
-      <h3 class="section-title">租車 Car Rental</h3>
-      <div id="car-list"></div>
+      <div class="glass-card welcome-card" style="margin-bottom:24px;">
+        <h3 style="font-size:18px; margin-bottom:8px;"><i class="ph ph-sun-horizon"></i> 最佳拍攝時間</h3>
+        <p style="font-size:14px; color:var(--text-muted); margin-bottom:12px;">今日日落時間預測 (四月福岡)：<strong style="color:var(--accent-color);">18:35</strong></p>
+        <div style="font-size:12px; display:flex; gap:12px;">
+          <span class="badge" style="background:rgba(255,165,0,0.2); color:orange; border:1px solid orange;">黃金時刻 17:50 - 18:30</span>
+          <span class="badge" style="background:rgba(0,191,255,0.2); color:deepskyblue; border:1px solid deepskyblue;">藍調時刻 18:35 - 18:55</span>
+        </div>
+      </div>
+
+      <h3 class="section-title">御朱印 / 打卡進度</h3>
+      <div id="goshuin-list"></div>
+
+      <h3 class="section-title">攝影與品飲筆記</h3>
+      <button class="badge" style="width:100%; padding:12px; margin-bottom:16px; font-size:16px; text-align:center; background:var(--glass-bg); color:white; border:1px solid var(--glass-border); cursor:pointer;" onclick="openNoteModal()"><i class="ph ph-plus"></i> 新增筆記</button>
+      <div id="notes-list"></div>
     </section>
+
+    <!-- Tab 5: Tools (Phase 3) -->
+    <section id="view-tools" class="view">
+      <h2 class="view-title">實用工具箱</h2>
+
+      <!-- Weather Alert -->
+      <div class="glass-card" style="border-left: 4px solid var(--accent-color); margin-bottom: 24px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+          <i class="ph ph-cloud-rain" style="font-size:24px; color:var(--accent-color);"></i>
+          <h3 style="font-size:16px;">天氣預警 (福岡)</h3>
+        </div>
+        <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">今日降雨機率 70%。建議啟動室內備案（如：博多運河城、天神地下街、福岡市科學館）。</p>
+      </div>
+
+      <!-- Exchange Rate -->
+      <h3 class="section-title">匯率估算 JPY to TWD</h3>
+      <div class="glass-card" style="display:flex; align-items:center; gap:12px;">
+        <input type="number" id="jpy-input" placeholder="日幣 (JPY)" style="flex:1; width:100%; padding:12px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:white; font-size:16px; font-family:var(--font-family);">
+        <i class="ph ph-arrows-left-right" style="color:var(--text-muted); font-size:20px;"></i>
+        <div id="twd-output" style="flex:1; text-align:center; padding:12px; border-radius:8px; background:rgba(255,51,102,0.15); border:1px solid rgba(255,51,102,0.3); color:white; font-size:16px; font-weight:600;">-- TWD</div>
+      </div>
+
+      <!-- Expense Tracker -->
+      <h3 class="section-title">花費記帳本</h3>
+      <div class="glass-card">
+        <div style="display:flex; gap:8px; margin-bottom:12px;">
+          <select id="exp-cat" style="flex:1; padding:12px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:white; font-family:var(--font-family);">
+            <option value="飲食" style="color:black;">飲食</option>
+            <option value="交通" style="color:black;">交通</option>
+            <option value="購物/酒" style="color:black;">購物/酒</option>
+            <option value="門票" style="color:black;">門票</option>
+          </select>
+          <input type="number" id="exp-amt" placeholder="金額(JPY)" style="flex:2; padding:12px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:white; font-family:var(--font-family);">
+        </div>
+        <button class="badge" style="width:100%; padding:12px; font-size:16px; text-align:center; background:var(--glass-bg); color:white; border:1px solid var(--glass-border); cursor:pointer;" onclick="addExpense()"><i class="ph ph-plus"></i> 記一筆</button>
+        <div id="exp-list" style="margin-top:16px;"></div>
+        <div style="margin-top:12px; padding-top:12px; border-top:1px solid var(--glass-border); display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-weight:600;">目前總花費</span>
+          <span style="color:var(--accent-color); font-size:20px; font-weight:700;" id="exp-total">¥ 0</span>
+        </div>
+      </div>
+
+      <!-- Emergency -->
+      <h3 class="section-title">緊急應變手冊</h3>
+      <div class="glass-card">
+        <div class="info-row" style="margin-bottom:12px;">
+          <span class="info-label" style="font-size:16px; font-weight:600; color:white;"><i class="ph ph-phone"></i> 台北駐福岡經濟文化辦事處</span>
+        </div>
+        <div class="info-row"><span class="info-label">急難救助電話</span><span class="info-val"><a href="tel:+81-90-1922-XXXX" style="color:var(--accent-color); text-decoration:none;">090-1922-XXXX</a></span></div>
+        <div class="info-row" style="margin-top:12px;"><span class="info-label" style="line-height:1.5;">護照遺失處理：<br>1. 至最近警察局報案取得遺失證明<br>2. 攜帶大頭照至辦事處申請補發補領</span></div>
+      </div>
+
+      <!-- Japanese Phrases -->
+      <h3 class="section-title">常用日語字卡 (點擊放大)</h3>
+      <div class="glass-card">
+        <div class="check-item" style="display:flex; justify-content:space-between; align-items:center;" onclick="showBigText('請問御朱印在哪裡領取？\n\n(御朱印はどこでもらえますか)')">
+          <span style="font-weight:600; font-size:15px;">請問御朱印在哪裡領取？</span><i class="ph ph-magnifying-glass-plus" style="margin:0; color:var(--accent-color);"></i>
+        </div>
+        <div class="check-item" style="display:flex; justify-content:space-between; align-items:center;" onclick="showBigText('這瓶酒有免稅嗎？\n\n(このお酒は免税になりますか)')">
+          <span style="font-weight:600; font-size:15px;">這瓶酒有免稅嗎？</span><i class="ph ph-magnifying-glass-plus" style="margin:0; color:var(--accent-color);"></i>
+        </div>
+        <div class="check-item" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0;" onclick="showBigText('不好意思，可以幫我們拍照嗎？\n\n(すみません、写真を撮っていただけますか)')">
+          <span style="font-weight:600; font-size:15px;">可以幫我們拍照嗎？</span><i class="ph ph-magnifying-glass-plus" style="margin:0; color:var(--accent-color);"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for Notes -->
+    <div id="note-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-content glass-card">
+        <h3 style="margin-bottom:16px;">新增筆記</h3>
+        <input type="text" id="note-title" placeholder="標題 (ex: xx酒造 / xx景點)" style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:white;">
+        <textarea id="note-body" placeholder="內容 (ex: 光圈 f/8, 快門 1/100, 口感清爽...)" style="width:100%; padding:12px; margin-bottom:16px; border-radius:8px; height:100px; border:none; background:rgba(255,255,255,0.1); color:white;"></textarea>
+        <div style="display:flex; gap:12px;">
+          <button style="flex:1; padding:12px; border-radius:8px; border:none; background:var(--glass-bg); color:white; cursor:pointer;" onclick="closeNoteModal()">取消</button>
+          <button style="flex:1; padding:12px; border-radius:8px; border:none; background:var(--accent-color); color:white; cursor:pointer;" onclick="saveNote()">儲存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Big Text -->
+    <div id="bigtext-modal" class="modal-overlay" style="display:none;" onclick="closeBigText()">
+      <div class="modal-content glass-card" style="text-align:center; padding:40px 20px; box-shadow:0 0 40px rgba(255,51,102,0.3);">
+        <div id="bigtext-content" style="font-size:28px; font-weight:700; line-height:1.5; white-space:pre-wrap;"></div>
+        <div style="margin-top:40px; color:var(--text-muted); font-size:14px;"><i class="ph ph-tap-single"></i> 點擊任意處關閉</div>
+      </div>
+    </div>
 
   </main>
 
@@ -74,11 +178,14 @@
     <button class="nav-btn" data-target="view-itinerary">
       <i class="ph ph-map-trifold"></i><span>行程</span>
     </button>
-    <button class="nav-btn" data-target="view-hotels">
-      <i class="ph ph-bed"></i><span>住宿</span>
+    <button class="nav-btn" data-target="view-wallet">
+      <i class="ph ph-wallet"></i><span>票卷</span>
     </button>
-    <button class="nav-btn" data-target="view-transit">
-      <i class="ph ph-airplane-tilt"></i><span>交通</span>
+    <button class="nav-btn" data-target="view-collections">
+      <i class="ph ph-camera"></i><span>收藏</span>
+    </button>
+    <button class="nav-btn" data-target="view-tools">
+      <i class="ph ph-toolbox"></i><span>工具</span>
     </button>
   </nav>
 
