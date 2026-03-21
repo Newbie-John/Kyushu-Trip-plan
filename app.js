@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     jpyInput.addEventListener('input', (e) => {
       const val = parseFloat(e.target.value);
       if(isNaN(val)) twdOutput.innerText = '-- TWD';
-      else twdOutput.innerText = Math.round(val * 0.21).toLocaleString() + ' TWD';
+      else twdOutput.innerText = Math.round(val * 0.201).toLocaleString() + ' TWD';
     });
   }
 
