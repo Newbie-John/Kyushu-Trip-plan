@@ -178,8 +178,8 @@ const tripData = {
     }
   ],
     wallet: [
-    { type: "flight", title: "去程電子機票 TPE -> FUK", subtitle: "航班: BR106", data: "BR106-QR-12345", qrMode: true },
-    { type: "flight", title: "回程電子機票 FUK -> TPE", subtitle: "航班: BR105", data: "BR105-QR-67890", qrMode: true },
+    { type: "flight", title: "去程電子機票 TPE -> FUK", subtitle: "航班: BR106", data: "*** 已隱藏 ***", qrMode: false },
+    { type: "flight", title: "回程電子機票 FUK -> TPE", subtitle: "航班: BR105", data: "*** 已隱藏 ***", qrMode: false },
     { type: "car", title: "租車取車憑證", subtitle: "預約編號: RC-888999", data: "RC-888999", qrMode: false }
   ],
   goshuin: [

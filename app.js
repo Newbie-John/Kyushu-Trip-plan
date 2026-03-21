@@ -95,13 +95,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Populate Itinerary
   const ilist = document.getElementById('itinerary-list');
-  tripData.itinerary.forEach(day => {
-    const title = document.createElement('h3');
-    title.className = 'section-title';
-    title.style.marginLeft = '-16px';
-    title.style.marginTop = '32px';
-    title.innerText = `Day ${day.day} - ${day.date}`;
-    ilist.appendChild(title);
+  tripData.itinerary.forEach((day, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'accordion-btn';
+    if (index === 0) btn.classList.add('active');
+    btn.innerHTML = `Day ${day.day} - ${day.date} <i class="ph ph-caret-down"></i>`;
+    
+    const content = document.createElement('div');
+    content.className = 'accordion-content timeline';
+    if (index === 0) content.classList.add('open');
+
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      content.classList.toggle('open');
+    });
+
+    ilist.appendChild(btn);
 
     day.activities.forEach(act => {
       let icon = 'ph-map-pin';
@@ -147,8 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
-      ilist.appendChild(item);
+      content.appendChild(item);
     });
+    ilist.appendChild(content);
   });
 
   // Populate Wallet
@@ -275,6 +285,44 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   if(document.getElementById('exp-list')) {
     window.renderExpenses();
+  }
+
+  // Populate Checklist
+  const prepList = document.getElementById('preparation-list');
+  if (prepList) {
+    const prepItems = [
+      { id: "p1", name: "護照 (確認效期跨過行程大於6個月)" },
+      { id: "p2", name: "台灣駕照日文譯本 (雙證件自駕必備!)" },
+      { id: "p3", name: "台灣駕照正本 (雙證件自駕必備!)" },
+      { id: "p4", name: "Visit Japan Web 及電子機票儲存" },
+      { id: "p5", name: "日幣現金 / 可刷實體信用卡" },
+      { id: "p6", name: "春季薄外套、防風外套 (春季溫差大必備)" },
+      { id: "p7", name: "好穿的休閒排汗便鞋" },
+      { id: "p8", name: "太陽眼鏡及防曬用品 (自駕防西曬必備)" },
+      { id: "p9", name: "常備藥品、個人保健品" }
+    ];
+    const savedPrep = JSON.parse(localStorage.getItem('preparationProgress') || '{}');
+    
+    const renderPrep = () => {
+      prepList.innerHTML = '';
+      prepItems.forEach(p => {
+        let isChecked = savedPrep[p.id] || false;
+        let icon = isChecked ? 'ph-check-square' : 'ph-square';
+        let cls = isChecked ? 'check-item checked' : 'check-item';
+        
+        const div = document.createElement('div');
+        div.className = cls;
+        div.style.padding = '12px';
+        div.onclick = () => {
+          savedPrep[p.id] = !savedPrep[p.id];
+          localStorage.setItem('preparationProgress', JSON.stringify(savedPrep));
+          renderPrep();
+        };
+        div.innerHTML = `<i class="ph ${icon}" style="font-size:20px; transition: color 0.2s; color: ${isChecked ? 'var(--accent-color)' : 'var(--text-muted)'}; margin-right: 12px; margin-bottom: 0;"></i><span>${p.name}</span>`;
+        prepList.appendChild(div);
+      });
+    };
+    renderPrep();
   }
 });
 
