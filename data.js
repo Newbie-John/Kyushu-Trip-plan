@@ -75,8 +75,9 @@ const tripData = {
       date: "2026/04/05 (日)",
       title: "威士忌盛事與博多散策",
       activities: [
-        { time: "11:30-16:30", desc: "Fukuoka Whisky Stories 2026", type: "poi", tags: ["#威士忌", "#盛會"], details: "參加這場年度威士忌盛會，與在地代理商及職人交流（地點通常在博多車站附近）。" },
-        { time: "17:00", desc: "攝影：博多運河城或那珂川", type: "poi", tags: ["#攝影", "#水景"], details: "拍攝都市水景與華燈初上的氛圍。" },
+        { time: "09:30-16:30", desc: "Fukuoka Whisky Stories 2026", type: "poi", tags: ["#威士忌", "#盛會"], details: "到下午集合前，我的行程都是參加這場年度威士忌盛會，與在地代理商及職人交流（地點通常在博多車站附近）。" },
+        { time: "16:30-17:00", desc: "下午集合", type: "transit", details: "與旅伴會合，準備接下來的行程。" },
+        { time: "17:00-18:30", desc: "攝影：博多運河城或那珂川", type: "poi", tags: ["#攝影", "#水景"], details: "拍攝都市水景與華燈初上的氛圍。" },
         { time: "晚上", desc: "晚餐：博多屋台體驗", type: "food", tags: ["#晚餐", "#屋台"], details: "中洲或天神屋台，體驗福岡特有的路邊攤職人精神。" }
       ]
     },
