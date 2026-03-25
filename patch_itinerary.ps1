@@ -1,65 +1,10 @@
-const tripData = {
-    flights: [
-    { type: "去程", flightNo: "BR106", airline: "長榮航空", departure: {time: "08:10", airport: "TPE 桃園(第2航廈)"}, arrival: {time: "11:15", airport: "FUK 福岡(國際線)"}, baggage: "計重制 23kg" },
-    { type: "回程", flightNo: "BR105", airline: "長榮航空", departure: {time: "12:15", airport: "FUK 福岡(國際線)"}, arrival: {time: "13:50", airport: "TPE 桃園(第2航廈)"}, baggage: "計重制 23kg" }
-  ],
-  transport: { rentalCar: { reservationNo: "RC-888999", time: "2026/04/07 10:00 - 2026/04/09 18:00", mapUrl: "", location: "博多車站前營業所" } },
-
-  hotels: [
-    {
-      id: "webase",
-      name: "WeBase Hakata",
-      nights: 1,
-      checkInDate: "2026/04/04",
-      checkOutDate: "2026/04/05",
-      checkInTime: "16:00",
-      checkOutTime: "11:00",
-      location: "福岡 中洲川端",
-      mapUrl: "https://maps.apple.com/?q=WeBase+Hakata",
-      roomType: "雙層床私人房 (4人用)",
-      meal: "含早餐 07:00-09:30"
-    },
-    {
-      id: "croom",
-      name: "博多祇園西鐵克魯姆酒店",
-      nights: 2,
-      checkInDate: "2026/04/05",
-      checkOutDate: "2026/04/07",
-      checkInTime: "15:00",
-      checkOutTime: "11:00",
-      location: "福岡 櫛田神社前",
-      mapUrl: "https://maps.apple.com/?q=Nishitetsu+Hotel+CROOM+Hakata+Gion+Kushida+Shrine",
-      roomType: "住宅雙人房 (帶洗衣機與小廚房)",
-      meal: "無早餐 06:30-10:00 (可加購)"
-    },
-    {
-      id: "daiwa",
-      name: "大和魯內酒店熊本銀座通PREMIER",
-      nights: 2,
-      checkInDate: "2026/04/07",
-      checkOutDate: "2026/04/09",
-      checkInTime: "14:00",
-      checkOutTime: "11:00",
-      location: "熊本 花畑町",
-      mapUrl: "https://maps.apple.com/?q=Daiwa+Roynet+Hotel+Kumamoto",
-      roomType: "豪華特大床房",
-      meal: "無早餐 06:30-10:00 (可加購)"
-    },
-    {
-      id: "oriental",
-      name: "福岡天神東方快捷酒店",
-      nights: 2,
-      checkInDate: "2026/04/09",
-      checkOutDate: "2026/04/11",
-      checkInTime: "15:00",
-      checkOutTime: "11:00",
-      location: "福岡 天神",
-      mapUrl: "https://maps.apple.com/?q=Hotel+Oriental+Express+Fukuoka+Tenjin",
-      roomType: "標準大床房",
-      meal: "無早餐 06:30-10:00 (可加購)"
-    }
-  ],
-  itinerary: [
+$path = "c:\Users\USER\.gemini\antigravity\scratch\trip-planner-app\data.js"
+$content = Get-Content $path -Raw
+$start = $content.IndexOf("    {`r`n      day: 1,")
+if ($start -lt 0) { $start = $content.IndexOf("    {`n      day: 1,") }
+$end = $content.IndexOf("    {`r`n      day: 7,")
+if ($end -lt 0) { $end = $content.IndexOf("    {`n      day: 7,") }
+$replacement = @"
     {
       day: 1,
       date: "2026/04/04 (六)",
@@ -130,44 +75,7 @@ const tripData = {
         { time: "18:30-19:00", desc: "博多車站還車", type: "transit", details: "加滿油後準時還車，結束自駕行程。" }
       ]
     },
-    {
-      day: 7,
-      date: "2026/04/10 (五)",
-      title: "糸島海景 · 咖啡悠活",
-      activities: [
-        { time: "10:00", desc: "搭乘地下鐵/巴士前往糸島", type: "transit", duration: "1h", tags: [], mapUrl: "" },
-        { time: "11:00-12:30", desc: "櫻井二見浦 夫婦岩", type: "poi", tags: ["#海景", "#打卡"], details: "海中白色鳥居，絕美打卡點。", mapUrl: "https://maps.apple.com/?q=Sakurai+Futamigaura" },
-        { time: "12:30-14:00", desc: "午餐：海邊咖啡廳 (Sunset Cafe)", type: "food", tags: ["#海景午餐", "#咖啡"], details: "享受海景與悠閒午餐。", mapUrl: "" },
-        { time: "14:30-16:00", desc: "棕櫚樹鞦韆 / 雜貨店巡禮", type: "poi", tags: ["#散步", "#拍照"], mapUrl: "" },
-        { time: "16:00-17:00", desc: "返回天神市區", type: "transit", duration: "1h", mapUrl: "" },
-        { time: "17:00-19:30", desc: "天神地下街 / 博多運河城 購物", type: "poi", tags: ["#購物", "#伴手禮"], mapUrl: "https://maps.apple.com/?q=Tenjin+Underground+Mall" },
-        { time: "19:30-21:30", desc: "晚餐：和牛燒肉 (肉一 或 多牛)", type: "food", tags: ["#美食", "#燒肉"], details: "高CP值和牛燒肉，需排隊。", mapUrl: "https://maps.apple.com/?q=Yakiniku+Nikuichi" },
-        { time: "22:00", desc: "休息 @ 福岡天神東方快捷酒店", type: "hotel", mapUrl: "https://maps.apple.com/?q=Hotel+Oriental+Express+Fukuoka+Tenjin" }
-      ]
-    },
-    {
-      day: 8,
-      date: "2026/04/11 (六)",
-      title: "最後採買 · 滿載而歸",
-      activities: [
-        { time: "09:00", desc: "悠閒早餐 & 整理行李", type: "rest", tags: [], mapUrl: "" },
-        { time: "10:30-12:30", desc: "市區最後衝刺購買伴手禮 (努努雞、明太子)", type: "poi", tags: ["#購物", "#伴手禮"], details: "不可錯過的福岡代表伴手禮。", mapUrl: "https://maps.apple.com/?q=Hakata+Station" },
-        { time: "13:00", desc: "前往福岡機場", type: "transit", tags: [], mapUrl: "https://maps.apple.com/?q=Fukuoka+Airport" },
-        { time: "13:30-15:00", desc: "機場報到 & 免稅店最後採買", type: "poi", tags: ["#機場", "#免稅"], mapUrl: "" },
-        { time: "16:00", desc: "搭機返台", type: "flight", tags: ["#回程", "#飛行"], mapUrl: "" },
-        { time: "17:30", desc: "抵達溫暖的家", type: "poi", tags: [], mapUrl: "" }
-      ]
-    }
-  ],
-    wallet: [
-    { type: "flight", title: "去程電子機票 TPE -> FUK", subtitle: "航班: BR106", data: "*** 已隱藏 ***", qrMode: false },
-    { type: "flight", title: "回程電子機票 FUK -> TPE", subtitle: "航班: BR105", data: "*** 已隱藏 ***", qrMode: false },
-    { type: "car", title: "租車取車憑證", subtitle: "預約編號: RC-888999", data: "RC-888999", qrMode: false }
-  ],
-  goshuin: [
-    { id: "g1", name: "櫛田神社 (博多)", checked: false },
-    { id: "g2", name: "太宰府天滿宮", checked: false },
-    { id: "g3", name: "熊本城加藤神社", checked: false },
-    { id: "g4", name: "阿蘇神社", checked: false }
-  ]
-};
+"@
+$newContent = $content.Substring(0, $start) + $replacement + $content.Substring($end)
+Set-Content -Path $path -Value $newContent -Encoding UTF8
+Write-Host "Updated data.js"
