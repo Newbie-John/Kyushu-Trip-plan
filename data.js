@@ -97,8 +97,8 @@ const tripData = {
     }
   ],
   wallet: [
-    { type: "flight", title: "去程電子機票 TPE -> FUK", subtitle: "航班: AK1510", data: "N/A", qrMode: false },
-    { type: "flight", title: "回程電子機票 FUK -> TPE", subtitle: "航班: AK1511", data: "N/A", qrMode: false },
+    { type: "flight", title: "去程電子機票 TPE -> FUK", subtitle: "航班: AK1510 | 12:00 起飛 ➔ 15:20 降落", data: "N/A", qrMode: false },
+    { type: "flight", title: "回程電子機票 FUK -> TPE", subtitle: "航班: AK1511 | 16:20 起飛 ➔ 17:50 降落", data: "N/A", qrMode: false },
     { type: "car", title: "租車預約憑證", subtitle: "預約編號: 09944856900", data: "09944856900", qrMode: false }
   ],
   goshuin: [
