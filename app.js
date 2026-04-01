@@ -112,6 +112,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ilist.appendChild(btn);
 
+    const cleanDesc = (desc) => {
+      let d = desc.replace("入住", "").replace("晚餐：", "").replace("午餐：", "").replace("選項 A：", "");
+      d = d.replace("休息 @ ", "").replace("走 ", "").replace(" 回程", "").replace("探索", "").replace("觀光", "");
+      d = d.replace("與", " ").replace("及", " ");
+      return d.trim();
+    };
+    
+    let locations = [];
+    day.activities.forEach(act => {
+      if (['poi', 'food', 'hotel'].includes(act.type)) {
+        let name = cleanDesc(act.desc);
+        if (name && !["行程重點", "晚餐時間", "返回福岡", "自駕抵達熊本", "熊本出發", "駛回博多還車", "回到溫暖的家", "前往住宿 Check-in"].includes(name)) {
+          locations.push(name);
+        }
+      }
+    });
+    
+    let routeHtml = '';
+    if (locations.length >= 2) {
+      let origin = encodeURIComponent(locations[0]);
+      let dest = encodeURIComponent(locations[locations.length - 1]);
+      let waypoints = locations.slice(1, -1).map(l => encodeURIComponent(l)).join('|');
+      let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}`;
+      if (waypoints) url += `&waypoints=${waypoints}`;
+      
+      routeHtml = `
+        <div style="margin-bottom: 20px; text-align: center;">
+          <a href="${url}" target="_blank" class="badge" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; font-size:16px; background:var(--accent-color); color:white; text-decoration:none; border-radius:12px; font-weight:600; box-shadow:0 4px 15px rgba(255,51,102,0.4);">
+            <i class="ph ph-map-trifold" style="font-size:20px;"></i> 開啟本日 Google Maps 路線導航
+          </a>
+        </div>
+      `;
+    } else if (locations.length === 1) {
+      let url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locations[0])}`;
+      routeHtml = `
+        <div style="margin-bottom: 20px; text-align: center;">
+          <a href="${url}" target="_blank" class="badge" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; font-size:16px; background:var(--accent-color); color:white; text-decoration:none; border-radius:12px; font-weight:600; box-shadow:0 4px 15px rgba(255,51,102,0.4);">
+            <i class="ph ph-map-pin" style="font-size:20px;"></i> 查看本地點 Google Maps
+          </a>
+        </div>
+      `;
+    }
+
+    if (routeHtml) {
+      const d = document.createElement('div');
+      d.innerHTML = routeHtml;
+      content.appendChild(d);
+    }
+
     day.activities.forEach(act => {
       let icon = 'ph-map-pin';
       if(act.type === 'flight') icon = 'ph-airplane-tilt';
