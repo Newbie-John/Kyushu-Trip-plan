@@ -197,7 +197,11 @@
     </button>
   </nav>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <!-- 強制清除快取，每次開啟自動抓取最新檔案 -->
+  <script>
+    var ts = new Date().getTime();
+    document.write('<script src="data.js?v=' + ts + '"><\\/script>');
+    document.write('<script src="app.js?v=' + ts + '"><\\/script>');
+  </script>
 </body>
 </html>
