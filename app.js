@@ -130,29 +130,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     let routeHtml = '';
-    if (locations.length >= 2) {
-      let origin = encodeURIComponent(locations[0]);
-      let dest = encodeURIComponent(locations[locations.length - 1]);
-      let waypoints = locations.slice(1, -1).map(l => encodeURIComponent(l)).join('|');
-      let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}`;
-      if (waypoints) url += `&waypoints=${waypoints}`;
-      
-      routeHtml = `
-        <div style="margin-bottom: 20px; text-align: center;">
-          <a href="${url}" target="_blank" class="badge" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; font-size:16px; background:var(--accent-color); color:white; text-decoration:none; border-radius:12px; font-weight:600; box-shadow:0 4px 15px rgba(255,51,102,0.4);">
-            <i class="ph ph-map-trifold" style="font-size:20px;"></i> 開啟本日 Google Maps 路線導航
-          </a>
-        </div>
-      `;
-    } else if (locations.length === 1) {
-      let url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locations[0])}`;
-      routeHtml = `
-        <div style="margin-bottom: 20px; text-align: center;">
-          <a href="${url}" target="_blank" class="badge" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; font-size:16px; background:var(--accent-color); color:white; text-decoration:none; border-radius:12px; font-weight:600; box-shadow:0 4px 15px rgba(255,51,102,0.4);">
-            <i class="ph ph-map-pin" style="font-size:20px;"></i> 查看本地點 Google Maps
-          </a>
-        </div>
-      `;
+    if (day.day > 2) {
+      if (locations.length >= 2) {
+        let origin = encodeURIComponent(locations[0]);
+        let dest = encodeURIComponent(locations[locations.length - 1]);
+        let waypoints = locations.slice(1, -1).map(l => encodeURIComponent(l)).join('|');
+        let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}`;
+        if (waypoints) url += `&waypoints=${waypoints}`;
+        
+        routeHtml = `
+          <div style="margin-bottom: 20px; text-align: center;">
+            <a href="${url}" target="_blank" class="badge" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; font-size:16px; background:var(--accent-color); color:white; text-decoration:none; border-radius:12px; font-weight:600; box-shadow:0 4px 15px rgba(255,51,102,0.4);">
+              <i class="ph ph-map-trifold" style="font-size:20px;"></i> 開啟本日 Google Maps 路線導航
+            </a>
+          </div>
+        `;
+      } else if (locations.length === 1) {
+        let url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locations[0])}`;
+        routeHtml = `
+          <div style="margin-bottom: 20px; text-align: center;">
+            <a href="${url}" target="_blank" class="badge" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; font-size:16px; background:var(--accent-color); color:white; text-decoration:none; border-radius:12px; font-weight:600; box-shadow:0 4px 15px rgba(255,51,102,0.4);">
+              <i class="ph ph-map-pin" style="font-size:20px;"></i> 查看本地點 Google Maps
+            </a>
+          </div>
+        `;
+      }
     }
 
     if (routeHtml) {
@@ -209,6 +211,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     ilist.appendChild(content);
   });
+
+  // Populate Restaurants
+  const rlist = document.getElementById('restaurants-list');
+  if (tripData.restaurants && rlist) {
+    tripData.restaurants.forEach(r => {
+      let resBadge = r.reservable 
+        ? `<span class="badge" style="background:rgba(255,51,102,0.15); color:var(--accent-color); border:1px solid rgba(255,51,102,0.3); font-size:12px; margin-left:8px;"><i class="ph ph-bell-ringing"></i> 可事先訂位</span>` 
+        : '';
+        
+      rlist.innerHTML += `
+        <div class="glass-card" style="margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div style="font-size:16px; font-weight:700;">${r.name} ${resBadge}</div>
+            ${r.mapUrl ? `<a href="${r.mapUrl}" target="_blank" class="badge" style="background:var(--glass-bg); color:white; border:1px solid rgba(255,255,255,0.2); text-decoration:none; display:inline-flex; align-items:center; gap:6px; padding:6px 12px;"><i class="ph ph-map-pin" style="color:var(--accent-color);"></i> 導航</a>` : ''}
+          </div>
+          <div style="font-size:13px; color:var(--text-muted); margin-top:8px;"><i class="ph ph-map-pin"></i> ${r.address}</div>
+        </div>
+      `;
+    });
+  }
 
   // Populate Wallet
   const wlist = document.getElementById('wallet-list');

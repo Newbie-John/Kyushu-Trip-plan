@@ -96,6 +96,68 @@ const tripData = {
       ]
     }
   ],
+  restaurants: [
+    {
+      "name": "千龍拉麵 (千龍ラーメン)",
+      "address": "熊本県玉名市高瀬下町468",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E7%8E%89%E5%90%8D%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%20%E5%8D%83%E9%BE%8D",
+      "reservable": false
+    },
+    {
+      "name": "大輪拉麵 (大輪ラーメン)",
+      "address": "熊本県玉名市中1154-1",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E8%BC%AA%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3",
+      "reservable": false
+    },
+    {
+      "name": "かわ屋 祇園店",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%81%8B%E3%82%8F%E5%B1%8B%20%E7%A5%87%E5%9C%92%E5%BA%97",
+      "reservable": true
+    },
+    {
+      "name": "OCEAN HOUSE オーシャンハウス",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=OCEAN%20HOUSE%20%E3%82%AA%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%B3%E3%83%8F%E3%82%A6%E3%82%B9",
+      "reservable": true
+    },
+    {
+      "name": "びっくり亭本家",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%81%B3%E3%81%A3%E3%81%8F%E3%82%8A%E4%BA%AD%E6%9C%AC%E5%AE%B6",
+      "reservable": false
+    },
+    {
+      "name": "やぐら",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E3%82%84%E3%81%90%E3%82%89",
+      "reservable": false
+    },
+    {
+      "name": "麵屋兼虎 福岡PARCO",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E9%BA%B5%E5%B1%8B%E5%85%BC%E8%99%8E%20%E7%A6%8F%E5%B2%A1PARCO",
+      "reservable": false
+    },
+    {
+      "name": "肉の山翔",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E8%82%89%E3%81%AE%E5%B1%B1%E7%BF%94",
+      "reservable": true
+    },
+    {
+      "name": "麺屋我ガ 天神店",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E9%BA%BA%E5%B1%8B%E6%88%91%E3%82%AC%20%E5%A4%A9%E7%A5%9E%E5%BA%97",
+      "reservable": false
+    },
+    {
+      "name": "水炊名店 鳥田 博多本店",
+      "address": "福岡 (從TXT匯入)",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=%E6%B0%B4%E7%82%8A%E5%90%8D%E5%BA%97%20%E9%B3%A5%E7%94%B0%20%E5%8D%9A%E5%A4%9A%E6%9C%AC%E5%BA%97",
+      "reservable": true
+    }
+  ],
   wallet: [
     { type: "flight", title: "去程機票 TPE ➔ FUK", subtitle: "起飛: 12:00 | 降落: 15:20", data: "AK1510", qrMode: false },
     { type: "flight", title: "回程機票 FUK ➔ TPE", subtitle: "起飛: 16:20 | 降落: 17:50", data: "AK1511", qrMode: false },
